@@ -9,7 +9,8 @@ namespace day02
         public static void Main(string[] args)
         {
             var count = 0;
-            foreach (string line in File.ReadLines(@"/Users/sebastien/dev/sources/AdventOfCode2020/day02/day02/input.txt"))
+            ;
+            foreach (string line in File.ReadLines("../../../input.txt"))
             //foreach (var line in new string[]{"1-3 a: abcde", "1-3 b: cdefg", "2-9 c: ccccccccc"})
             {
                 if (isValidPasswordWithPosition(line))
