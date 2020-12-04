@@ -17,3 +17,5 @@ obj
 .vs
 .idea
 bin
+
+target
