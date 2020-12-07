@@ -56,16 +56,16 @@ func firstPart(content []string) int {
 }
 
 func search(target string, bags map[string]map[string]int, uniqueBag *map[string]types.Nil) {
-	containsBag := []string{}
-	for i, v := range bags {
-		for ka := range v {
-			if ka == target {
-				containsBag = append(containsBag, i)
+	contains := []string{}
+	for bag, v := range bags {
+		for innerBag := range v {
+			if innerBag == target {
+				contains = append(contains, bag)
 				break
 			}
 		}
 	}
-	for _, bag := range containsBag {
+	for _, bag := range contains {
 		(*uniqueBag)[bag] = types.Nil{}
 		search(bag, bags, uniqueBag)
 	}
@@ -81,16 +81,16 @@ func buildBags(content []string) map[string]map[string]int {
 		line = strings.ReplaceAll(line, "bags", "")
 		line = strings.ReplaceAll(line, "bag", "")
 		line = strings.ReplaceAll(line, "contain", "")
-		tab := strings.FieldsFunc(line, Split)
-		key := tab[0] + " " + tab[1]
+		parts := strings.FieldsFunc(line, Split)
+		key := parts[0] + " " + parts[1]
 		if _, ok := bags[key]; !ok {
 			bags[key] = make(map[string]int)
 		}
-		if tab[2] == "no" {
+		if parts[2] == "no" {
 			continue
 		}
-		for i := 3; i < len(tab); i += 3 {
-			bags[key][tab[i]+" "+tab[i+1]] = toi(tab[i-1])
+		for i := 3; i < len(parts); i += 3 {
+			bags[key][parts[i]+" "+parts[i+1]] = toi(parts[i-1])
 		}
 	}
 	return bags
