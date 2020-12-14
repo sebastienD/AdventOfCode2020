@@ -12,3 +12,11 @@ func toi(in string) int {
 	}
 	return num
 }
+
+func toi64(s string) int64 {
+	num, err := strconv.ParseInt(s, 10, 64)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return num
+}
